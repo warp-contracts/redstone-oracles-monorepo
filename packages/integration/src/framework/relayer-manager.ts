@@ -47,7 +47,6 @@ type RelayerConfig = {
     cron?: string[];
     deviationPercentage?: number;
     timeSinceLastUpdateInMilliseconds?: number;
-    onStart?: boolean;
   };
   rpcUrls?: string[];
   gasLimit?: number;
@@ -62,7 +61,6 @@ const DEFAULT_MANIFEST = {
   updateTriggers: {
     deviationPercentage: 0,
     timeSinceLastUpdateInMilliseconds: 10000,
-    onStart: false,
   },
   adapterContract: "__ADAPTER_CONTRACT_ADDRESS__",
   dataServiceId: "mock-data-service",
@@ -99,9 +97,6 @@ export const startRelayer = (
     HISTORICAL_PACKAGES_DATA_SERVICE_ID: "mock-data-service",
     HISTORICAL_PACKAGES_GATEWAYS: JSON.stringify(cacheServiceUrls),
     GAS_LIMIT: (config.gasLimit ?? 10_000_000).toString(),
-    SLEEP_MS_AFTER_FAILED_SIMULATION: (
-      config.sleepAfterFailedSimulation ?? 0
-    ).toString(),
   };
   if (config.intervalInMs) {
     extraEnv["RELAYER_ITERATION_INTERVAL"] = config.intervalInMs.toString();
