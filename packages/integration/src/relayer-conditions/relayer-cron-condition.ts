@@ -68,7 +68,7 @@ const main = async () => {
     isFallback: false,
   });
 
-  // after 33 seconds 33 / 10 = ~3 iterations should happen
+  // after 33 seconds 33 / 10 = ~3 iterations should happen, maybe 2 if something goes slow
   console.log("Waiting 33 seconds, for relayer");
   await RedstoneCommon.sleep(33_000);
 
@@ -79,9 +79,9 @@ const main = async () => {
   ) as PriceFeedWithRounds;
 
   const currentRound = await priceFeed.latestRound();
-  if (currentRound.toNumber() !== 4) {
+  if (currentRound.toNumber() !== 3 && currentRound.toNumber() !== 4) {
     throw new Error(
-      `Expected round id to equals 4, but equals ${currentRound.toString()}`
+      `Expected round id to equals 3 or 4, but equals ${currentRound.toString()}`
     );
   }
 

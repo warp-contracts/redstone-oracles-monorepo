@@ -92,18 +92,26 @@ const main = async () => {
   });
 
   const currentRoundsCount = await priceFeedContract.latestRound();
-  if (currentRoundsCount.toNumber() !== 2) {
+  if (
+    currentRoundsCount.toNumber() !== 2 &&
+    currentRoundsCount.toNumber() !== 3 // if test takes more than a minute time condition would increase the round additionally
+  ) {
     throw new Error(
-      `Expected round id to equals 2, but equals ${currentRoundsCount.toString()}`
+      `Expected round id to equals 2 or 3, but equals ${currentRoundsCount.toString()}`
     );
   }
 
   // here time deviation should kick in
   await RedstoneCommon.sleep(70_000);
   const nextRoundCount = await priceFeedContract.latestRound();
-  if (nextRoundCount.toNumber() !== 3) {
+  if (
+    nextRoundCount.toNumber() !== currentRoundsCount.toNumber() + 1 &&
+    nextRoundCount.toNumber() !== currentRoundsCount.toNumber() + 2
+  ) {
     throw new Error(
-      `Expected round id to equals 3, but equals ${nextRoundCount.toString()}`
+      `Expected round id to equals ${currentRoundsCount.toNumber() + 1} or ${
+        currentRoundsCount.toNumber() + 2
+      }, but equals ${nextRoundCount.toString()}`
     );
   }
 

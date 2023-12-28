@@ -162,7 +162,9 @@ const compareValuesFromBigPackageAndLocalCache = (
       let dataFeedValueFromLocal =
         dataPackagesFromLocal[dataFeedId]?.[0]?.dataPoints[0]?.value;
       if (!dataFeedValueFromLocal) {
-        console.log(`Missing data feed in local for ${dataFeedId}`);
+        console.log(
+          `Missing data feed in local for ${dataFeedId} (big package)`
+        );
         dataFeedValueFromLocal = 0;
       }
       const deviation = MathUtils.calculateDeviationPercent({

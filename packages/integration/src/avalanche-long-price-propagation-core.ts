@@ -1,15 +1,6 @@
 import { runLongPricePropagationCoreTest } from "./framework/run-long-price-propagation-core-test";
 
-const REMOVED_DATA_FEEDS = [
-  "DAI",
-  "YYAV3SA1",
-  "TJ_AVAX_USDC_AUTO",
-  "BUSD",
-  "XAVA",
-  "LINK",
-  "USDT.e",
-  "SHLB_USDT.e-USDt_C",
-];
+const REMOVED_DATA_FEEDS: string[] = [];
 const DATA_FEEDS_NOT_WORKING_LOCALLY: string[] = [];
 const SKIPPED_SOURCES = JSON.parse(
   process.env.SKIPPED_SOURCES ?? "[]"

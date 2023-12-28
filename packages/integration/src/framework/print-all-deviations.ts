@@ -27,8 +27,8 @@ const logDeviation = (
   isBigPackage: boolean
 ) => {
   console.log(
-    `Max deviation ${
-      isBigPackage ? "from big package" : ""
+    `Max deviation${
+      isBigPackage ? " from big package" : ""
     } for ${dataFeedId} - ${deviation}`
   );
 };
