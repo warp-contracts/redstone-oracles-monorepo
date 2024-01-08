@@ -27,10 +27,7 @@ export const printDotenv = (label: string, filePath: string) => {
   console.groupEnd();
 };
 
-export const printExtraEnv = (
-  label: string,
-  extraEnv: Record<string, string>
-) => {
+export const printExtraEnv = (label: string, extraEnv: ExtraEnv) => {
   console.group(`${label} extra env`);
   console.log(JSON.stringify(extraEnv, undefined, 2));
   console.groupEnd();
@@ -127,7 +124,7 @@ export const addPrefixToProcessLogs = (
   });
 };
 
-export type ExtraEnv = { [varName: string]: string };
+export type ExtraEnv = Partial<Record<string, string>>;
 
 const extendEnv = (extraEnv?: ExtraEnv): NodeJS.ProcessEnv => {
   return { ...process.env, ...extraEnv };

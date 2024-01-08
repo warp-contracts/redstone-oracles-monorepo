@@ -16,6 +16,7 @@ import {
   getCacheServicePort,
 } from "./gateway-manager";
 import {
+  ExtraEnv,
   PriceSet,
   debug,
   printDotenv,
@@ -87,11 +88,11 @@ export const startRelayer = (
     updateTriggers: config.updateTriggers ?? DEFAULT_MANIFEST.updateTriggers,
   });
 
-  const extraEnv: Record<string, string> = {
+  const extraEnv: ExtraEnv = {
     RPC_URLS: JSON.stringify(rpcUrls),
     PRIVATE_KEY: HARDHAT_MOCK_PRIVATE_KEY,
     CACHE_SERVICE_URLS: JSON.stringify(cacheServiceUrls),
-    HEALTHCHECK_PING_URL: "",
+    HEALTHCHECK_PING_URL: undefined,
     MANIFEST_FILE: MANIFEST_PATH,
     FALLBACK_OFFSET_IN_MINUTES: `${config.isFallback ? 2 : 0}`,
     HISTORICAL_PACKAGES_DATA_SERVICE_ID: "mock-data-service",
