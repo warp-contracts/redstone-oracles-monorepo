@@ -56,21 +56,21 @@ const main = async () => {
   const priceFeedContractAddress = priceFeedContract.address;
 
   // iteration of relayer happen every ~10 seconds
-  // time since last update is set on every 8 seconds
+  // time since last update is set on every 6 seconds
   // so on every relayer iteration we should publish new timestamp
   startRelayer(relayerInstance, {
     cacheServiceInstances: [gatewayInstance],
     adapterContractAddress,
     intervalInMs: 10_000,
     updateTriggers: {
-      timeSinceLastUpdateInMilliseconds: 8_000,
+      timeSinceLastUpdateInMilliseconds: 6_000,
     },
     isFallback: false,
   });
 
-  // after 33 seconds 33 / 10 = ~3 iterations should happen
-  console.log("Waiting 33 seconds, for relayer");
-  await RedstoneCommon.sleep(33_000);
+  // after 35 seconds 35 / 10 = ~3 iterations should happen
+  console.log("Waiting 35 seconds, for relayer");
+  await RedstoneCommon.sleep(35_000);
 
   const priceFeed = new ethers.Contract(
     priceFeedContractAddress,
