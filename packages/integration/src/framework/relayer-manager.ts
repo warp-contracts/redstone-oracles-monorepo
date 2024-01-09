@@ -16,9 +16,9 @@ import {
   getCacheServicePort,
 } from "./gateway-manager";
 import {
+  debug,
   ExtraEnv,
   PriceSet,
-  debug,
   printDotenv,
   printExtraEnv,
   runWithLogPrefixInBackground,

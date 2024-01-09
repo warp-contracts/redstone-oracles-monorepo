@@ -1,8 +1,9 @@
+import axios from "axios";
 import { ChildProcess, spawnSync } from "child_process";
 import fs from "fs";
 import {
-  debug,
   PriceSet,
+  debug,
   runWithLogPrefix,
   runWithLogPrefixInBackground,
   stopChild,
@@ -10,7 +11,6 @@ import {
   waitForSuccess,
   waitForUrl,
 } from "./integration-test-utils";
-import axios from "axios";
 
 export type RedstoneCacheLayerInstance = {
   instanceId: string;

@@ -3,8 +3,8 @@ import * as redstoneSDK from "@redstone-finance/sdk";
 import { ChildProcess, spawnSync } from "child_process";
 import fs from "fs";
 import {
-  debug,
   PriceSet,
+  debug,
   printDotenv,
   printExtraEnv,
   runWithLogPrefix,

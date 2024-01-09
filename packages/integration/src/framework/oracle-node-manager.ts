@@ -3,8 +3,8 @@ import { ChildProcess } from "child_process";
 import fs from "fs";
 import { GatewayInstance, getCacheServicePort } from "./gateway-manager";
 import {
-  debug,
   PriceSet,
+  debug,
   printDotenv,
   printExtraEnv,
   runWithLogPrefixInBackground,
