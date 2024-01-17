@@ -63,7 +63,7 @@ const main = async () => {
     adapterContractAddress,
     intervalInMs: 10_000,
     updateTriggers: {
-      cron: ["*/8 * * * * *"],
+      cron: ["*/6 * * * * *"],
     },
     isFallback: false,
   });
