@@ -1,7 +1,7 @@
 import { runLongPricePropagationCoreTest } from "./framework/run-long-price-propagation-core-test";
 
 const REMOVED_DATA_FEEDS: string[] = [];
-const DATA_FEEDS_NOT_WORKING_LOCALLY = ["PREMIA-TWAP-60"];
+const DATA_FEEDS_NOT_WORKING_LOCALLY = ["PREMIA-TWAP-60", "SONIA"];
 const SKIPPED_SOURCES = JSON.parse(
   process.env.SKIPPED_SOURCES ?? "[]"
 ) as string[];
