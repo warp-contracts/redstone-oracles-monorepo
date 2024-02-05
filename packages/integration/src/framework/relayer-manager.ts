@@ -52,6 +52,7 @@ type RelayerConfig = {
   rpcUrls?: string[];
   gasLimit?: number;
   sleepAfterFailedSimulation?: number;
+  temporaryUpdatePriceInterval?: number;
 };
 
 const DEFAULT_MANIFEST = {
@@ -98,6 +99,9 @@ export const startRelayer = (
     HISTORICAL_PACKAGES_DATA_SERVICE_ID: "mock-data-service",
     HISTORICAL_PACKAGES_GATEWAYS: JSON.stringify(cacheServiceUrls),
     GAS_LIMIT: (config.gasLimit ?? 10_000_000).toString(),
+    TEMPORARY_UPDATE_PRICE_INTERVAL: (
+      config.temporaryUpdatePriceInterval ?? -1
+    ).toString(),
   };
   if (config.intervalInMs) {
     extraEnv["RELAYER_ITERATION_INTERVAL"] = config.intervalInMs.toString();
