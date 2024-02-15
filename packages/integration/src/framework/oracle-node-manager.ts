@@ -137,6 +137,7 @@ const createExtraEnv = (
     LEVEL_DB_LOCATION: `oracle-node-level-db-${instance.instanceId}`,
     ECDSA_PRIVATE_KEY: HARDHAT_MOCK_PRIVATE_KEYS[privateKeyIndex],
     MOCK_PRICES_URL_OR_PATH: getMockPricesPath(instance),
+    USE_MULTICALL_PROVIDER: "true",
   };
 
   return extraEnv;
