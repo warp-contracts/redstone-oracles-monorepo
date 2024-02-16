@@ -55,23 +55,17 @@ const main = async () => {
   const priceFeedContract = await deployMockPriceFeed(adapterContractAddress);
   const priceFeedContractAddress = priceFeedContract.address;
 
-  // iteration of relayer happen every ~10 seconds
-  // time since last update is set on every 6 seconds
-  // so on every relayer iteration we should publish new timestamp
   startRelayer(relayerInstance, {
     cacheServiceInstances: [gatewayInstance],
     adapterContractAddress,
     intervalInMs: 10_000,
     updateTriggers: {
-      timeSinceLastUpdateInMilliseconds: 6_000,
+      timeSinceLastUpdateInMilliseconds: 30_000,
     },
     isFallback: false,
-    temporaryUpdatePriceInterval: 20_000,
+    temporaryUpdatePriceInterval: 5_000,
   });
 
-  // first update should take ~30 seconds
-  // then 10 seconds each for 30 seconds should result in 3 update
-  // in summary there should happend 4 updates in 1 min
   console.log("Waiting 60 seconds, for relayer");
   await RedstoneCommon.sleep(RedstoneCommon.minToMs(1));
 
@@ -82,7 +76,7 @@ const main = async () => {
   ) as PriceFeedWithRounds;
 
   const currentRound = (await priceFeed.latestRound()).toNumber();
-  if (!(currentRound === 3 || currentRound === 4)) {
+  if (!(currentRound === 2 || currentRound === 3)) {
     throw new Error(
       `Expected round id should be 3 or 4, but equals ${currentRound.toString()}`
     );
