@@ -138,6 +138,7 @@ const createExtraEnv = (
     ECDSA_PRIVATE_KEY: HARDHAT_MOCK_PRIVATE_KEYS[privateKeyIndex],
     MOCK_PRICES_URL_OR_PATH: getMockPricesPath(instance),
     USE_MULTICALL_PROVIDER: "true",
+    RPC_CURATED_LIST_ENABLE: "true",
   };
 
   return extraEnv;
