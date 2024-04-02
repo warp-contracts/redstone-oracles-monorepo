@@ -50,7 +50,8 @@ export const startAndWaitForOracleNode = (
   instance: OracleNodeInstance,
   cacheServiceInstances: GatewayInstance[],
   manifestFileName: string = "single-source/mock",
-  privateKeyIndex: number = 0
+  privateKeyIndex: number = 0,
+  extraGatewayUrl: string | undefined = undefined // allow to inject 'bad' gateway
 ) => {
   const extraEnv = createExtraEnv(
     instance,
@@ -58,6 +59,13 @@ export const startAndWaitForOracleNode = (
     manifestFileName,
     privateKeyIndex
   );
+  if (extraGatewayUrl) {
+    const gatewayUrls = JSON.parse(
+      extraEnv.OVERRIDE_DIRECT_CACHE_SERVICE_URLS
+    ) as string[];
+    gatewayUrls.unshift(extraGatewayUrl);
+    extraEnv.OVERRIDE_DIRECT_CACHE_SERVICE_URLS = JSON.stringify(gatewayUrls);
+  }
   return startAndWaitForOracleNodeWithEnv(instance, extraEnv);
 };
 
