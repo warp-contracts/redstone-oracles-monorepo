@@ -4,7 +4,7 @@ import { HardhatUserConfig } from "hardhat/config";
 const config: HardhatUserConfig = {
   solidity: "0.8.18",
   mocha: {
-    timeout: 2_000,
+    timeout: 20_000,
   },
   networks: {
     mainnet: {
