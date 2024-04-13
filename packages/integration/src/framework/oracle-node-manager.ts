@@ -19,7 +19,7 @@ export const HARDHAT_MOCK_PRIVATE_KEYS = [
 ];
 const ORACLE_NODE_DIR = "../oracle-node";
 const NODE_BROADCAST_TIMEOUT = 300_000;
-const EXPECTED_BROADCAST_LOG = "Broadcasting data package completed";
+const EXPECTED_BROADCAST_LOG = /Broadcasting data package .* completed/;
 
 export type OracleNodeInstance = {
   instanceId: string;
@@ -89,8 +89,8 @@ const startAndWaitForOracleNodeWithEnv = (
   );
 
   const isReadyPromise = new Promise<void>((resolve, _rejects) => {
-    instance.oracleNodeProcess?.stdout?.on("data", (data: string) => {
-      if (data.includes(EXPECTED_BROADCAST_LOG)) {
+    instance.oracleNodeProcess?.stdout?.on("data", (data: Buffer) => {
+      if (EXPECTED_BROADCAST_LOG.test(data.toString())) {
         resolve();
       }
     });
