@@ -59,8 +59,7 @@ export const runLongPricePropagationCoreTest = async (
   nodeWorkingTimeInMinutes: number,
   nodeIntervalInMilliseconds: number,
   coldStartIterationsCount: number,
-  removedDataFeeds: string[],
-  dataFeedsNotWorkingLocally: string[],
+  skippedDataFeeds: string[],
   sourcesToSkip: string[]
 ) => {
   await startAndWaitForGateway(gatewayInstance, {
@@ -111,14 +110,14 @@ export const runLongPricePropagationCoreTest = async (
     console.log(
       `Comparing data packages from local and prod cache for ${timestamp} timestamp`
     );
+
     const { deviationsPerDataFeed, sourceDeviationsPerDataFeed } =
       compareDataPackagesFromLocalAndProd(
         {
           dataPackagesFromLocal: responseFromLocalCache,
           dataPackagesFromProd: responseFromProdCache,
         },
-        removedDataFeeds,
-        dataFeedsNotWorkingLocally
+        skippedDataFeeds
       );
     printAllDeviations(deviationsPerDataFeed);
     checkMissingDataFeeds(
@@ -126,8 +125,7 @@ export const runLongPricePropagationCoreTest = async (
         dataPackagesFromLocal: responseFromLocalCache,
         dataPackagesFromProd: responseFromProdCache,
       },
-      removedDataFeeds,
-      dataFeedsNotWorkingLocally
+      skippedDataFeeds
     );
     checkValuesDeviations(
       deviationsPerDataFeed,

@@ -20,14 +20,12 @@ interface SourceMetadata {
 
 export const compareDataPackagesFromLocalAndProd = (
   { dataPackagesFromLocal, dataPackagesFromProd }: DataPackagesFromLocalAndProd,
-  removedDataFeeds?: string[],
-  dataFeedsNotWorkingLocally?: string[]
+  skippedDataFeeds?: string[]
 ) =>
   compareValuesInDataPackages(
     dataPackagesFromProd,
     dataPackagesFromLocal,
-    removedDataFeeds,
-    dataFeedsNotWorkingLocally
+    skippedDataFeeds
   );
 
 const compareValuesInDataPackages = (
