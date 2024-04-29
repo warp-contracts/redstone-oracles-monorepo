@@ -1,4 +1,3 @@
-import { consts } from "@redstone-finance/protocol";
 import * as redstoneSDK from "@redstone-finance/sdk";
 import { ChildProcess, spawnSync } from "child_process";
 import fs from "fs";
@@ -212,15 +211,14 @@ export const waitForDataAndDisplayIt = async (
   instance: GatewayInstance,
   expectedDataPackageCount: number = 1
 ) => {
-  // Waiting for data packages to be available in cache service
-  await waitForDataPackages(
-    expectedDataPackageCount,
-    consts.ALL_FEEDS_KEY,
-    instance
-  );
   await waitForDataPackages(expectedDataPackageCount, "ETH", instance);
   await waitForDataPackages(expectedDataPackageCount, "BTC", instance);
   await waitForDataPackages(expectedDataPackageCount, "AAVE", instance);
+  await waitForDataPackages(
+    expectedDataPackageCount,
+    "___COOL_TOKENS___",
+    instance
+  );
 
   // Querying data packages from cache service
   await runWithLogPrefix(

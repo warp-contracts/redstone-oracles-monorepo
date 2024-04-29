@@ -1,4 +1,3 @@
-import { consts } from "@redstone-finance/protocol";
 import { DataPackagesFromLocalAndProd } from "./run-long-price-propagation-core-test";
 
 export const checkMissingDataFeeds = (
@@ -43,7 +42,6 @@ const getMissingDataFeedsInDataPackages = (
   dataFeedsFromFirstDataPackage.filter(
     (dataFeed) =>
       !dataFeedsFromSecondDataPackage.includes(dataFeed) &&
-      dataFeed !== consts.ALL_FEEDS_KEY &&
       !removedDataFeeds?.includes(dataFeed) &&
       !dataFeedsNotWorkingLocally?.includes(dataFeed)
   );
