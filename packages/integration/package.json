@@ -8,7 +8,8 @@
   "scripts": {
     "run-ts": "yarn global:ts-node",
     "lint": "yarn global:eslint .",
-    "build": "rm -rf dist && yarn global:tsc --build"
+    "build": "rm -rf dist && yarn global:tsc --build tsconfig.json",
+    "build-dev": "yarn build"
   },
   "dependencies": {
     "@redstone-finance/cache-service": "^0.4.0",
