@@ -7,6 +7,7 @@ const DATA_FEEDS_NOT_WORKING_LOCALLY = [
   "PREMIA-TWAP-60",
   "USDB-TWAP-30",
   "ezETH-TWAP-60",
+  "SolvBTC/BTC-TWAP-60",
 ];
 const DATA_FEEDS_NOT_BROADCASTED = getNotBroadcastedDataFeeds(primaryManifest);
 const SKIPPED_SOURCES = JSON.parse(
