@@ -285,7 +285,7 @@ export const fetchDataPackages = async (
   fetchParams: redstoneSDK.DataPackagesRequestParams = {
     dataServiceId: "mock-data-service",
     uniqueSignersCount: 1,
-    dataFeeds: ["ETH", "BTC", "AAVE"],
+    dataPackagesIds: ["ETH", "BTC", "AAVE"],
   }
 ) => {
   const gatewayUrls = gatewayInstances.map(
