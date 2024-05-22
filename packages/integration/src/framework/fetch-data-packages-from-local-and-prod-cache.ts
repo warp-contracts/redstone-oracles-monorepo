@@ -2,8 +2,7 @@ import axios from "axios";
 import { DataPackages } from "./compare-data-packages";
 import { GatewayInstance, getCacheServicePort } from "./gateway-manager";
 
-const HISTORICAL_ORACLE_GATEWAY_URL =
-  "https://oracle-gateway-2.a.redstone.finance/data-packages/historical";
+const HISTORICAL_ORACLE_GATEWAY_URL = process.env.HISTORICAL_ORACLE_GATEWAY_URL;
 
 export const fetchDataPackagesFromCaches = async (
   gatewayInstance: GatewayInstance,
@@ -22,7 +21,7 @@ export const fetchDataPackagesFromCaches = async (
   const prodDataServiceName = manifestFileName.replace("data-services/", "");
   const responseFromProdCache = (
     await axios.get<DataPackages>(
-      `${HISTORICAL_ORACLE_GATEWAY_URL}/redstone-${prodDataServiceName}-prod/${timestamp}`
+      `${HISTORICAL_ORACLE_GATEWAY_URL}/data-packages/historical/redstone-${prodDataServiceName}-prod/${timestamp}`
     )
   ).data;
 
