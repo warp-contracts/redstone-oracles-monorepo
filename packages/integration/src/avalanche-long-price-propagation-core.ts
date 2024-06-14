@@ -14,7 +14,6 @@ const REMOVED_DATA_FEEDS: string[] = [
   "TJ_AVAX_USDC_LP",
   "TJ_AVAX_USDT_LP",
   "TJ_AVAX_sAVAX_LP",
-  "YY_PTP_sAVAX",
   "YY_TJ_AVAX_ETH_LP",
   "YY_TJ_AVAX_USDC_LP",
 ];
